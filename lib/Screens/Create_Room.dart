@@ -3,6 +3,7 @@ import 'package:twentyone/Widgets/Custom_Button.dart';
 import 'package:twentyone/Widgets/Custom_Text.dart';
 import 'package:twentyone/Widgets/Custom_TextField.dart';
 import 'package:twentyone/Widgets/Responsive.dart';
+import 'package:twentyone/resources/socket_method.dart';
 
 class CreateRoom extends StatefulWidget {
   static String routeName = 'create-room';
@@ -14,6 +15,7 @@ class CreateRoom extends StatefulWidget {
 
 class _CreateRoomState extends State<CreateRoom> {
   final TextEditingController _nameController = TextEditingController();
+  final SocketMethods _socketMethods = SocketMethods();
   @override
   void dispose() {
     super.dispose();
@@ -45,7 +47,9 @@ class _CreateRoomState extends State<CreateRoom> {
             SizedBox(
               height: size.height * 0.02,
             ),
-            CustomButton(onTap: (() {}), text: "Create")
+            CustomButton(
+                onTap: (() => _socketMethods.createRoom(_nameController.text)),
+                text: "Create")
           ],
         ),
       ),
